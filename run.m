@@ -35,7 +35,7 @@ uo = vinf * cosd(alphacero) * cosd(bethacero);
 vo = vinf * sind(bethacero);
 wo = vinf * sind(alphacero) * cosd(bethacero);
 y0 = [ uo vo wo 0 0 0 titacero 0];
-t = [0 10];
+t = [0 5];
 
 %% Cálculo por métodos numéricos
 
