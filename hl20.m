@@ -1,12 +1,15 @@
-classdef hl20
+%classdef hl20
+%@hl20
     % HL-20 Data
     % Derivativas, parámetros másicos y cálculo de coeficientes
-	properties (Constant)
+	%properties (Constant)
         ft_2_m    = 0.0254*12;
         kg_2_slug = 0.0685218;   % kg to slug
         kg_2_lb   = 2.20462;
-        lb_2_kg   = 1/hl20.kg_2_lb; 
-        sl_2_kg   = 1/hl20.kg_2_slug;
+        %lb_2_kg   = 1/hl20.kg_2_lb; 
+        lb_2_kg   = 1/kg_2_lb;
+        %sl_2_kg   = 1/hl20.kg_2_slug;
+        sl_2_kg   = 1/kg_2_slug;
 
         % NASA Technical Memorandum 4302
         % Preliminary Subsonic Aerodynamic Model for Simulation 
@@ -94,17 +97,24 @@ classdef hl20
         % Real-Time Simulation Model of the HL-20 Lifting Body - NTRS - NASA
         % https://ntrs.nasa.gov/archive/nasa/casi.ntrs.nasa.gov/19920021916.pdf
 
-        cbar =  28.24 * hl20.ft_2_m; 
-        sref = 286.45 * hl20.ft_2_m^2; 
-        bref =  13.89 * hl20.ft_2_m; 
-        vlen = 27.31 * hl20.ft_2_m;      % Vehicle Length
-        x_ref = 0.540 * hl20.vlen;       % Reference point from nose
-        x_cg  = 0.575 * hl20.vlen;       % Center of Gravity (Full)
+##        cbar =  28.24 * hl20.ft_2_m; 
+##        sref = 286.45 * hl20.ft_2_m^2; 
+##        bref =  13.89 * hl20.ft_2_m; 
+##        vlen = 27.31 * hl20.ft_2_m;      % Vehicle Length
+##        x_ref = 0.540 * hl20.vlen;       % Reference point from nose
+##        x_cg  = 0.575 * hl20.vlen;       % Center of Gravity (Full)
+        cbar =  28.24 * ft_2_m; 
+        sref = 286.45 * ft_2_m^2; 
+        bref =  13.89 * ft_2_m; 
+        vlen = 27.31 * ft_2_m;      % Vehicle Length
+        x_ref = 0.540 * vlen;       % Reference point from nose
+        x_cg  = 0.575 * vlen;       % Center of Gravity (Full)
         mass = 11739;
-        fuel =  2948 * hl20.lb_2_kg; 
+        %fuel =  2948 * hl20.lb_2_kg; 
+        fuel =  2948 * lb_2_kg; 
         Ixx  = 12430;
         Iyy  = 72478;
         Izz  = 72478;
-    end
-end
+    %end
+%@end hl20
 

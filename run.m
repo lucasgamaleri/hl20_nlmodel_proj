@@ -2,29 +2,37 @@
 % DESCRIPTIVE TEXTs
 
 
-clear
-clc
-global rho 
-global sup
-global b
-global c 
-global g
-global m
-global de
-global Ix
-global Iy
-global Iz
-global vinf
-global V
+%clear
+%clc
+##global rho 
+##global sup
+##global b
+##global c 
+##global g
+##global m
+##global de
+##global Ix
+##global Iy
+##global Iz
+##global vinf
+##global V
 g = 9.81;
 rho = 1.04 ;  
-sup = hl20.sref; 
-b = hl20.bref ; % en metros
-c = hl20.cbar ; % en metros
-m = hl20.mass + hl20.fuel ;
-Ix = hl20.Ixx ;
-Iy = hl20.Iyy ;
-Iz = hl20.Izz ;
+##sup = hl20.sref; 
+##b = hl20.bref ; % en metros
+##c = hl20.cbar ; % en metros
+##m = hl20.mass + hl20.fuel ;
+##Ix = hl20.Ixx ;
+##Iy = hl20.Iyy ;
+##Iz = hl20.Izz ;
+sup = sref; 
+b = bref ; % en metros
+c = cbar ; % en metros
+m = mass + fuel ;
+Ix = Ixx ;
+Iy = Iyy ;
+Iz = Izz ;
+
 vinf = 180;
 de = -10 ; %angulo en grados
 alphacero = 7 ; %angulo en grados
@@ -39,7 +47,7 @@ t = [0 5];
 
 %% Cálculo por métodos numéricos
 
-[t,y] = ode45(@f,t,y0);
+[t,y] = ode45(@f,t,y0 );
 
 %% Gráficos
 
