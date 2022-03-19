@@ -1,4 +1,4 @@
-function [xp] = f(t,y)
+function xp = f(t,y)
 %y = [ uo vo wo 0 0 0 0 titacero ];
 global rho 
 global vinf
@@ -12,7 +12,7 @@ global Ix
 global Iy
 global Iz
 global V
-
+global Po
 V = sqrt(y(1)^2 + y(2)^2 + y(3)^2) ;
 betha = asind(y(2)/vinf);
 alpha = atand(y(3)/y(1));
@@ -22,30 +22,57 @@ fila1 = [1 alpha alpha^2 alpha^3 alpha^4 alpha^5 alpha^6 abs(betha) betha^2 abs(
 
 fila2 = [1 alpha alpha^2 alpha^3 alpha^4] ;
 
-Cxo =  fila1*hl20.Po(:,3)*-1 ;
+##Cxo =  fila1*hl20.Po(:,3)*-1 ;
+##
+##Czo = fila1*hl20.Po(:,1)*-1 ;
+##
+##Cmo = fila1*hl20.Po(:,2) ; 
+##
+##Czde= fila2*hl20.Pde(:,1)*-1 ;
+##
+##Cmde= fila2*hl20.Pde(:,2) ;
+##
+##Cxde= fila2*hl20.Pde(:,3)*-1 ;
+##
+##Cmq = interp1(hl20.Cdamp_alpha,hl20.Cmq,alpha);
+##
+##Cno = interp2(hl20.Cn_alpha,hl20.Cn_beta,hl20.Cn',alpha,abs(betha)); %(3,:) fila3 - ":" todas las columnas
+##%Cno = interp1(hl20.Cn_beta,hl20.Cn(3,:),betha);
+##
+##Clp = interp1(hl20.Cdamp_alpha,hl20.Clp,alpha);
+##
+##Clr = interp1(hl20.Cdamp_alpha,hl20.Clr,alpha);
+##
+##Cnp = interp1(hl20.Cdamp_alpha,hl20.Cnp,alpha);
+##
+##Cnr = interp1(hl20.Cdamp_alpha,hl20.Cnr,alpha);
 
-Czo = fila1*hl20.Po(:,1)*-1 ;
+Cxo =  fila1*Po(:,3)*-1 ;
 
-Cmo = fila1*hl20.Po(:,2) ; 
+Czo = fila1*Po(:,1)*-1 ;
 
-Czde= fila2*hl20.Pde(:,1)*-1 ;
+Cmo = fila1*Po(:,2) ; 
 
-Cmde= fila2*hl20.Pde(:,2) ;
+Czde= fila2*Pde(:,1)*-1 ;
 
-Cxde= fila2*hl20.Pde(:,3)*-1 ;
+Cmde= fila2*Pde(:,2) ;
 
-Cmq = interp1(hl20.Cdamp_alpha,hl20.Cmq,alpha);
+Cxde= fila2*Pde(:,3)*-1 ;
 
-Cno = interp2(hl20.Cn_alpha,hl20.Cn_beta,hl20.Cn',alpha,abs(betha)); %(3,:) fila3 - ":" todas las columnas
-%Cno = interp1(hl20.Cn_beta,hl20.Cn(3,:),betha);
+Cmq = interp1(Cdamp_alpha,Cmq,alpha);
 
-Clp = interp1(hl20.Cdamp_alpha,hl20.Clp,alpha);
+Cno = interp2(Cn_alpha,Cn_beta,Cn',alpha,abs(betha)); %(3,:) fila3 - ":" todas las columnas
+%Cno = interp1(Cn_beta,Cn(3,:),betha);
 
-Clr = interp1(hl20.Cdamp_alpha,hl20.Clr,alpha);
+Clp = interp1(Cdamp_alpha,Clp,alpha);
 
-Cnp = interp1(hl20.Cdamp_alpha,hl20.Cnp,alpha);
+Clr = interp1(Cdamp_alpha,Clr,alpha);
 
-Cnr = interp1(hl20.Cdamp_alpha,hl20.Cnr,alpha);
+Cnp = interp1(Cdamp_alpha,Cnp,alpha);
+
+Cnr = interp1(Cdamp_alpha,Cnr,alpha);
+
+
 
 
 xp(1)= ((0.5*rho*vinf^2*sup*(Cxo + Cxde*de) - m*g*sin(y(7)))/m) - y(5)*y(3) + y(6)*y(2);
@@ -62,6 +89,6 @@ xp = xp';
 
 
 
-end
+endfunction
 
 
